@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 40px 60px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #fff;
+        margin-bottom: 30px;
+    }
+
+    button {
+        font-size: 1.5em;
+        padding: 15px 40px;
+        margin: 10px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .yes {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    .yes:hover {
+        transform: scale(1.1);
+    }
+
+    .no {
+        background: #fff;
+        color: #ff4d6d;
+    }
+
+    #message {
+        color: #fff;
+        font-size: 1.5em;
+        margin-top: 20px;
+    }
+
+    .rose {
+        position: absolute;
+        top: -50px;
+        font-size: 2em;
+        animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container" id="card">
+    <h1>Will you be my Valentine? 💖</h1>
+    <button class="yes" onclick="yesClicked()">Yes ❤️</button>
+    <button class="no" onclick="noClicked()">No 💔</button>
+    <div id="message"></div>
+</div>
+
+<script>
+function noClicked() {
+    document.getElementById("message").innerText = "Try again 😌💞";
+}
+
+function yesClicked() {
+    document.body.style.background = "radial-gradient(circle, #ff758c, #ff7eb3)";
+    document.getElementById("card").innerHTML = `
+        <h1>YAYYYY 💘🌹</h1>
+        <p style="font-size:1.5em;color:white;">
+            You just made my Valentine’s Day perfect ✨
+        </p>
+    `;
+    startRoses();
+}
+
+function startRoses() {
+    for (let i = 0; i < 50; i++) {
+        let rose = document.createElement("div");
+        rose.classList.add("rose");
+        rose.innerText = "🌹";
+        rose.style.left = Math.random() * 100 + "vw";
+        rose.style.animationDuration = (3 + Math.random() * 3) + "s";
+        document.body.appendChild(rose);
+
+        setTimeout(() => {
+            rose.remove();
+        }, 6000);
+    }
+}
+</script>
+
+</body>
+</html>
